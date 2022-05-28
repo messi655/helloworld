@@ -9,6 +9,7 @@ pipeline {
     stages {
         stage('test') {
             steps {
+                sh 'go mod init'
                 sh 'go test'
             }
         }

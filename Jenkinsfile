@@ -1,5 +1,13 @@
 pipeline {
     agent any
+    tools {
+        go 'go1.18'
+    }
+    environment {
+        GO118MODULE = 'on'
+        CGO_ENABLED = 0 
+        GOPATH = "${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_ID}"
+    }
     
     stages {
         stage('test') {
@@ -9,13 +17,12 @@ pipeline {
         }
         stage('build') {
             steps {
-                sh 'cd ${GOPATH}/src'
                 sh 'go build'
             }
         }
         stage('release') {  
             steps {
-                sh '$GOPATH/bin/go install'
+                sh 'go install'
             }
         }
     }

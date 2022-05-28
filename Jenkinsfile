@@ -26,5 +26,14 @@ pipeline {
                 sh 'go install'
             }
         }
+        
+        stage('login server'){
+         steps{
+            sshagent(credentials:['Login_Cloud_Server']){
+               sh 'scp  -o StrictHostKeyChecking=no  ./helloworld tinhuynh@34.142.187.195:~/'
+          }
+        echo "success lgoin"
+         }
+       }
     }
 }

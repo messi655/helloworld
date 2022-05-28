@@ -9,18 +9,17 @@ pipeline {
     stages {
         stage('test') {
             steps {
-                sh 'go mod init'
-                sh 'go test'
+                sh '$GOPATH/bin/go test'
             }
         }
         stage('build') {
             steps {
-                sh 'go build'
+                sh '$GOPATH/bin/go build'
             }
         }
         stage('release') {  
             steps {
-                sh 'go install'
+                sh '$GOPATH/bin/go install'
             }
         }
     }

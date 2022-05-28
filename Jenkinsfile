@@ -26,6 +26,11 @@ pipeline {
                 sh 'go install'
             }
         }
+        stage('list') {  
+            steps {
+                sh 'ls -la'
+            }
+        }
         
         stage('login server'){
          steps{

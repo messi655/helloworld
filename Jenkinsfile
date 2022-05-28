@@ -28,14 +28,14 @@ pipeline {
         }
         stage('list') {  
             steps {
-                sh 'ls -la'
+                sh 'ls -la ${GOPATH}'
             }
         }
         
         stage('login server'){
          steps{
             sshagent(credentials:['Login_Cloud_Server']){
-               sh 'scp  -o StrictHostKeyChecking=no  ./helloworld tinhuynh@34.142.187.195:~/'
+               sh 'scp  -o StrictHostKeyChecking=no  ./main.go tinhuynh@34.142.187.195:~/'
           }
         echo "success lgoin"
          }
